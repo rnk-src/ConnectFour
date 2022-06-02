@@ -58,6 +58,38 @@ public class Connect {
         return false;
     }
 
+    public boolean checkWins(String let){
+        for(int r = 0; r < board.length; r++){
+            for(int c = 0; c < board[r].length-3; c++){
+                if(board[r][c].equals(let) && board[r][c+1].equals(let) && board[r][c+2].equals(let) && board[r][c+3].equals(let)){
+                    return true;
+                }
+            }
+        }
+        for(int r = 0; r < 3; r++){
+            for(int c = 0; c < board[r].length; c++){
+                if(board[r][c].equals(let) && board[r+1][c].equals(let) && board[r+2][c].equals(let) && board[r+3][c].equals(let)){
+                    return true;
+                }
+            }
+        }
+        for(int r = 0; r < 3; r++){
+            for(int c = 0; c < 4; c++){
+                if(board[r][c].equals(let) && board[r+1][c+1].equals(let) && board[r+2][c+2].equals(let) && board[r+3][c+3].equals(let)){
+                    return true;
+                }
+            }
+        }
+        for(int r = 5; r > 2; r--){
+            for(int c = 0; c < 4; c++){
+                if(board[r][c].equals(let) && board[r-1][c+1].equals(let) && board[r-2][c+2].equals(let) && board[r-3][c+3].equals(let)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void printBoard(){
         for(int i = 0; i < 35; i++){
             System.out.print("_");
