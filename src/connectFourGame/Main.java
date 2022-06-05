@@ -41,7 +41,8 @@ public class Main {
                     System.out.print("Which column would you like to go to, " + board.getPlayer1Name() + ": ");
                     p1Col = scan.nextInt();
                 }
-                board.player1Move(board.availRow(p1Col-1), p1Col-1);
+                int avail1 = board.availRow(p1Col-1);
+                board.player1Move(avail1, p1Col-1);
                 board.printBoard();
                 if(board.checkWins("O")){
                     System.out.println(board.getPlayer1Name() + " has won the game! Congratulations!");
@@ -59,7 +60,8 @@ public class Main {
                     System.out.print("Which column would you like to go to, " + board.getPlayer2Name() + ": ");
                     p2Col = scan.nextInt();
                 }
-                board.player2Move(board.availRow(p2Col-1), p2Col-1);
+                int avail2 = board.availRow(p2Col-1);
+                board.player2Move(avail2, p2Col-1);
                 board.printBoard();
                 if(board.checkWins("X")){
                     System.out.println(board.getPlayer2Name() + " has won the game! Congratulations!");

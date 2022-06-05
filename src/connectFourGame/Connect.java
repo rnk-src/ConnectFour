@@ -90,6 +90,112 @@ public class Connect {
         return false;
     }
 
+    public boolean checkWins2 (String let, int ro, int cl){
+        return horizontalCheck(let,ro,cl) || verticalCheck(let,ro,cl) || diagonalCheck(let,ro,cl);
+    }
+
+    public boolean horizontalCheck(String let, int ro, int cl){
+        int sum = 1;
+        if(cl-3 < 0){
+            for(int i = 0; i < cl; i++){
+                if(board[ro][i].equals(let) == false){
+                    break;
+                }
+                sum++;
+            }
+        }
+        else{
+            for(int i = cl-3; i < cl; i++){
+                if(board[ro][i].equals(let) == false){
+                    break;
+                }
+                sum++;
+            }
+        }
+        if(cl+3 > 6){
+            for(int i = 6; i > cl; i--){
+                if(board[ro][i].equals(let) == false){
+                    break;
+                }
+                sum++;
+            }
+        }
+        else{
+            for(int i = cl + 3; i > cl; i--){
+                if(board[ro][i].equals(let) == false){
+                    break;
+                }
+                sum++;
+            }
+        }
+        if(sum >= 4){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean verticalCheck(String let, int ro, int cl){
+        int sum = 1;
+        if(ro > 2){
+            return false;
+        }
+        for(int i = ro + 1; i < ro + 4; i++){
+            if(board[i][cl].equals(let) == false){
+                break;
+            }
+            sum++;
+        }
+        if(sum >= 4){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean diagonalCheck(String let, int ro, int cl){
+        int sum = 0;
+        int startRo = ro;
+        while(startRo > -1){
+            startRo--;
+        }
+        int startCol = cl;
+        while(startCol > -1){
+            startCol--;
+        }
+        while(startRo < 5 && startCol < 6){
+            if(board[startRo][startCol].equals(let)){
+                sum++;
+            }
+            else{
+                break;
+            }
+            startRo++;
+            startCol++;
+        }
+        if(sum >= 4){
+            return true;
+        }
+        sum = 0;
+        startRo = ro;
+        while(startRo < 5){
+            startRo++;
+        }
+        startCol = cl;
+        while(startCol > -1){
+            startCol--;
+        }
+        while(startRo > -1 && startCol < 6){
+            if(board[startRo][startCol].equals(let)){
+                sum++;
+            }
+            else{
+                break;
+            }
+            startRo--;
+            startCol++;
+        }
+        return sum >= 4;
+    }
+
     public void printBoard(){
         for(int i = 0; i < 35; i++){
             System.out.print("_");
